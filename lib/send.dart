@@ -15,14 +15,13 @@ Future<void> start(Uri url, String domainId, Attributes attributes) async {
 
       recordId = req['data']['createRecord']['payload']['id'] as String;
     } catch (e) {
-      print('err');
+      print('error sending analytics $e');
       await Future.delayed(const Duration(seconds: 5));
     }
   }
 
   while (true) {
-    print('sending update');
-    await Future.delayed(const Duration(seconds: 15));
+    await Future.delayed(const Duration(seconds: 10));
 
     await send(url, getUpdateRecordBody(recordId));
   }

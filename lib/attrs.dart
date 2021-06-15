@@ -27,8 +27,8 @@ class Attributes {
 
   final String? browserName;
   final String? browserVersion;
-  final String? browserWidth;
-  final String? browserHeight;
+  final double? browserWidth;
+  final double? browserHeight;
 
   const Attributes({
     required this.location,

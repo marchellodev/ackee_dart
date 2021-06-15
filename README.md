@@ -22,7 +22,7 @@ startAckee(
 
 
 ## How does this work
-The `startAckee()` starts a tracker in an async method. First, it creates a record. If it fails, it waits for 5 seconds and tries again. Then, it just sends update requests every 15 seconds.
+The `startAckee()` starts a tracker in an async method. First, it creates a record. If it fails, it waits for 5 seconds and tries again. Then, it just sends update requests every 10 seconds.
 
 
 # License
