@@ -2,9 +2,8 @@
 [Ackee](https://ackee.electerious.com/) tracker implemented in Dart (for both Dart and Flutter applications).
 
 
-## Usage
+### Usage
 ```dart
-
 import 'package:ackee_dart/ackee_dart.dart';
 
 startAckee(
@@ -17,13 +16,13 @@ startAckee(
 ```
 
 
-## Current limitations
-- Actions are not yet implemented
+### Current limitations
+- Events are not yet implemented
 
 
-## How does this work
+### How does this work
 The `startAckee()` starts a tracker in an async method. First, it creates a record. If it fails, it waits for 5 seconds and tries again. Then, it just sends update requests every 10 seconds.
 
 
-# License
+### License
 MIT
