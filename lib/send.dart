@@ -1,5 +1,6 @@
 // only send data
 import 'dart:convert';
+import 'dart:io';
 
 import 'package:http/http.dart' as http;
 
@@ -11,7 +12,8 @@ Future<void> start(Uri url, String domainId, Attributes attributes) async {
 
   while (recordId == null) {
     try {
-      final req = await send(url, getCreateRecordBody(domainId, attributes));
+      final req = await send(
+          url, getCreateRecordBody(domainId, attributes), attributes);
 
       recordId = req['data']['createRecord']['payload']['id'] as String;
     } catch (e) {
@@ -23,15 +25,19 @@ Future<void> start(Uri url, String domainId, Attributes attributes) async {
   while (true) {
     await Future.delayed(const Duration(seconds: 10));
 
-    await send(url, getUpdateRecordBody(recordId));
+    await send(url, getUpdateRecordBody(recordId), attributes);
   }
 }
 
-Future<Map> send(Uri url, Map body) async {
+Future<Map> send(Uri url, Map body, Attributes attrs) async {
   final r = await http.post(
     url,
     body: jsonEncode(body),
-    headers: {'Content-Type': 'application/json;charset=UTF-8'},
+    headers: {
+      'Content-Type': 'application/json;charset=UTF-8',
+      'User-Agent':
+          '${attrs.browserName} (${attrs.browserVersion}) ${Platform.operatingSystem} (${Platform.operatingSystemVersion})',
+    },
   );
 
   return jsonDecode(r.body) as Map;
