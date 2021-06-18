@@ -1,6 +1,6 @@
 name: ackee_dart
-description: Ackee tracker implemented in Dart
-version: 0.0.1
+description: Analytics tracker for Ackee (Self-hosted, Node.js based analytics tool for those who care about privacy) implemented in Dart
+version: 0.0.2
 homepage: https://github.com/marchellodev/ackee_dart
 repository: https://github.com/marchellodev/ackee_dart
 

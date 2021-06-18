@@ -1,9 +1,10 @@
 import 'dart:convert';
 
+/// Defines what kind of data is sent to the Ackee server
+/// Please keep in mind that `browserName`, `browserVersion`, `osName`, and `osVersion` are used to generate User Agent.
+/// In Ackee, User Agent is combined with IP to calculate the unique identifier for each user ()
 class Attributes {
-  // required
-
-  /// website url
+  /// Current URL of your website/app
   /// NEEDS TO BE A VALID URL
   final String location;
 
@@ -12,17 +13,18 @@ class Attributes {
   final String? source;
 
   // only for detailed
+
   /// ru, en, etc
   final String? language;
+
   final double? screenWidth;
   final double? screenHeight;
-
   final int? screenColorDepth;
 
   final String? deviceName;
   final String? deviceManufacturer;
-  final String? osName;
 
+  final String? osName;
   final String? osVersion;
 
   final String? browserName;

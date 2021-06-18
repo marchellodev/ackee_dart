@@ -1,6 +1,4 @@
-// only send data
 import 'dart:convert';
-import 'dart:io';
 
 import 'package:http/http.dart' as http;
 
@@ -25,7 +23,11 @@ Future<void> start(Uri url, String domainId, Attributes attributes) async {
   while (true) {
     await Future.delayed(const Duration(seconds: 10));
 
-    await send(url, getUpdateRecordBody(recordId), attributes);
+    try {
+      await send(url, getUpdateRecordBody(recordId), attributes);
+    } catch (e) {
+      print('error updating analytics $e');
+    }
   }
 }
 
@@ -36,7 +38,7 @@ Future<Map> send(Uri url, Map body, Attributes attrs) async {
     headers: {
       'Content-Type': 'application/json;charset=UTF-8',
       'User-Agent':
-          '${attrs.browserName} (${attrs.browserVersion}) ${Platform.operatingSystem} (${Platform.operatingSystemVersion})',
+          '${attrs.browserName} (${attrs.browserVersion}) ${attrs.osName} (${attrs.osVersion})',
     },
   );
 
